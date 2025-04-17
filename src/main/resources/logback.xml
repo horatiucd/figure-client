@@ -1,0 +1,14 @@
+<configuration debug="false"> 
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> 
+		<encoder>
+			<pattern>%date{HH:mm:ss.SSS} [%t] %p %logger{0}#%m%n</pattern>
+		</encoder>
+	</appender>
+	
+	<logger name="com.zaxxer.hikari" level="INFO" />
+
+	<root level="DEBUG">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
