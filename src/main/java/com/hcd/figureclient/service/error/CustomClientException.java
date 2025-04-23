@@ -1,4 +1,4 @@
-package com.hcd.figureclient.service;
+package com.hcd.figureclient.service.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;

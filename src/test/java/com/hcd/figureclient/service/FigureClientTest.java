@@ -1,8 +1,8 @@
-package com.hcd.figureclient.service.operations;
+package com.hcd.figureclient.service;
 
-import com.hcd.figureclient.service.CustomClientException;
-import com.hcd.figureclient.dto.Figure;
-import com.hcd.figureclient.dto.FigureRequest;
+import com.hcd.figureclient.service.dto.Figure;
+import com.hcd.figureclient.service.dto.FigureRequest;
+import com.hcd.figureclient.service.error.CustomClientException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +14,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 @SpringBootTest
-class FigureRestOperationsTest {
+class FigureClientTest {
 
     @Autowired
-    private FigureRestOperations figureClient;
+    private FigureRestClient figureClient;
 
     @Test
     void allFigures() {

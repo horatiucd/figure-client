@@ -1,7 +1,7 @@
 package com.hcd.figureclient.service;
 
-import com.hcd.figureclient.dto.Figure;
-import com.hcd.figureclient.dto.FigureRequest;
+import com.hcd.figureclient.service.dto.Figure;
+import com.hcd.figureclient.service.dto.FigureRequest;
 
 import java.util.List;
 import java.util.Optional;

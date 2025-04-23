@@ -1,9 +1,8 @@
-package com.hcd.figureclient.service.operations;
+package com.hcd.figureclient.service;
 
-import com.hcd.figureclient.dto.Figure;
-import com.hcd.figureclient.dto.FigureRequest;
-import com.hcd.figureclient.service.CustomClientException;
-import com.hcd.figureclient.service.FigureClient;
+import com.hcd.figureclient.service.dto.Figure;
+import com.hcd.figureclient.service.dto.FigureRequest;
+import com.hcd.figureclient.service.error.CustomClientException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -15,13 +14,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FigureRestOperations implements FigureClient {
+public class FigureRestTemplateClient implements FigureClient {
 
     private final String url;
     private final RestOperations restOperations;
 
-    public FigureRestOperations(@Value("${figure.service.url}") String url,
-                                RestOperations restOperations) {
+    public FigureRestTemplateClient(@Value("${figure.service.url}") String url,
+                                    RestOperations restOperations) {
         this.url = url;
         this.restOperations = restOperations;
     }

@@ -1,26 +1,27 @@
-package com.hcd.figureclient.service.operations;
+package com.hcd.figureclient.service.error;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hcd.figureclient.service.CustomClientException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.ResponseErrorHandler;
 
 import java.io.IOException;
 import java.net.URI;
 
+@Component
 public class CustomResponseErrorHandler implements ResponseErrorHandler {
 
     private static final Logger log = LoggerFactory.getLogger(CustomResponseErrorHandler.class);
 
     private final ObjectMapper objectMapper;
 
-    public CustomResponseErrorHandler(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
+    public CustomResponseErrorHandler() {
+        objectMapper = new ObjectMapper();
     }
 
     @Override
