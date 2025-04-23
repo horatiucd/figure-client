@@ -1,8 +1,8 @@
 package com.hcd.figureclient.service.operations;
 
 import com.hcd.figureclient.service.CustomClientException;
-import com.hcd.figureclient.service.dto.Figure;
-import com.hcd.figureclient.service.dto.FigureRequest;
+import com.hcd.figureclient.dto.Figure;
+import com.hcd.figureclient.dto.FigureRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

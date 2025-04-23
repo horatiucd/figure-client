@@ -2,8 +2,8 @@ package com.hcd.figureclient.service.operations;
 
 import com.hcd.figureclient.service.CustomClientException;
 import com.hcd.figureclient.service.FigureClient;
-import com.hcd.figureclient.service.dto.Figure;
-import com.hcd.figureclient.service.dto.FigureRequest;
+import com.hcd.figureclient.dto.Figure;
+import com.hcd.figureclient.dto.FigureRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
