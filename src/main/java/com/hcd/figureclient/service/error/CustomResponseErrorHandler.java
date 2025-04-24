@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.ResponseErrorHandler;
@@ -31,7 +32,12 @@ public class CustomResponseErrorHandler implements ResponseErrorHandler {
 
     @Override
     public void handleError(URI url, HttpMethod method, ClientHttpResponse response) throws IOException {
+        HttpStatusCode statusCode = response.getStatusCode();
         String body = new String(response.getBody().readAllBytes());
+
+        if (statusCode.is4xxClientError()) {
+            throw new CustomClientException("Client error.", statusCode, body);
+        }
 
         String message = null;
         try {
@@ -40,7 +46,7 @@ public class CustomResponseErrorHandler implements ResponseErrorHandler {
             log.error("Failed to parse response body: {}", e.getMessage(), e);
         }
 
-        throw new CustomClientException(message, response.getStatusCode(), body);
+        throw new CustomClientException(message, statusCode, body);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
