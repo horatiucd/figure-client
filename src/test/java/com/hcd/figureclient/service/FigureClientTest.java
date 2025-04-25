@@ -17,7 +17,7 @@ import java.util.UUID;
 class FigureClientTest {
 
     @Autowired
-    private FigureRestClient figureClient;
+    private FigureRestTemplateClient figureClient;
 
     @Test
     void allFigures() {

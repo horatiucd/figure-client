@@ -36,10 +36,6 @@ public class CustomResponseErrorHandler implements ResponseErrorHandler {
         HttpStatusCode statusCode = response.getStatusCode();
         String body = new String(response.getBody().readAllBytes());
 
-        if (statusCode.is4xxClientError()) {
-            throw new CustomException("Client error.", statusCode, body);
-        }
-
         String message = null;
         try {
             message = objectMapper.readValue(body, ErrorResponse.class).detail();
