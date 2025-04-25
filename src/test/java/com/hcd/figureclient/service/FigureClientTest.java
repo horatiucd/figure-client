@@ -50,7 +50,7 @@ class FigureClientTest {
         Assertions.assertEquals("A Figure with the same 'name' already exists.", ex.getMessage());
         Assertions.assertEquals(HttpStatus.BAD_REQUEST.value(), ex.getStatusCode().value());
         Assertions.assertEquals("""
-                {"title":"Bad Request","status":400,"detail":"A Figure with the same 'name' already exists.","instance":"/api/v1/figures"}""", ex.getBody());
+                {"title":"Bad Request","status":400,"detail":"A Figure with the same 'name' already exists.","instance":"/api/v1/figures"}""", ex.getDetail());
     }
 
     @Test

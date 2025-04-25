@@ -6,25 +6,25 @@ import org.springframework.http.HttpStatusCode;
 public class CustomException extends RuntimeException {
 
     private final HttpStatusCode statusCode;
-    private final String body;
+    private final String detail;
 
     public CustomException(String message) {
         super(message);
         this.statusCode = HttpStatusCode.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value());
-        this.body = null;
+        this.detail = null;
     }
 
-    public CustomException(String message, HttpStatusCode statusCode, String body) {
+    public CustomException(String message, HttpStatusCode statusCode, String detail) {
         super(message);
         this.statusCode = statusCode;
-        this.body = body;
+        this.detail = detail;
     }
 
     public HttpStatusCode getStatusCode() {
         return statusCode;
     }
 
-    public String getBody() {
-        return body;
+    public String getDetail() {
+        return detail;
     }
 }
