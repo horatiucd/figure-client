@@ -31,12 +31,13 @@ public class CustomResponseErrorHandler implements ResponseErrorHandler {
     }
 
     @Override
-    public void handleError(URI url, HttpMethod method, ClientHttpResponse response) throws IOException {
+    public void handleError(URI url, HttpMethod method,
+                            ClientHttpResponse response) throws IOException {
         HttpStatusCode statusCode = response.getStatusCode();
         String body = new String(response.getBody().readAllBytes());
 
         if (statusCode.is4xxClientError()) {
-            throw new CustomClientException("Client error.", statusCode, body);
+            throw new CustomException("Client error.", statusCode, body);
         }
 
         String message = null;
@@ -46,7 +47,7 @@ public class CustomResponseErrorHandler implements ResponseErrorHandler {
             log.error("Failed to parse response body: {}", e.getMessage(), e);
         }
 
-        throw new CustomClientException(message, statusCode, body);
+        throw new CustomException(message, statusCode, body);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)

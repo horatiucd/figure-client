@@ -2,7 +2,7 @@ package com.hcd.figureclient.service;
 
 import com.hcd.figureclient.service.dto.Figure;
 import com.hcd.figureclient.service.dto.FigureRequest;
-import com.hcd.figureclient.service.error.CustomClientException;
+import com.hcd.figureclient.service.error.CustomException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ class FigureClientTest {
         Assertions.assertTrue(figure.id() > 0L);
         Assertions.assertEquals(request.name(), figure.name());
 
-        CustomClientException ex = Assertions.assertThrows(CustomClientException.class,
+        CustomException ex = Assertions.assertThrows(CustomException.class,
                 () -> figureClient.createFigure(request));
         Assertions.assertEquals("A Figure with the same 'name' already exists.", ex.getMessage());
         Assertions.assertEquals(HttpStatus.BAD_REQUEST.value(), ex.getStatusCode().value());
@@ -73,7 +73,7 @@ class FigureClientTest {
                 .orElseThrow(() -> new RuntimeException("Not enough figures"));
 
         var updateExistingRequest = new FigureRequest(otherExistingFigure.name());
-        CustomClientException ex = Assertions.assertThrows(CustomClientException.class,
+        CustomException ex = Assertions.assertThrows(CustomException.class,
                 () -> figureClient.updateFigure(id, updateExistingRequest));
         Assertions.assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getStatusCode().value());
     }
@@ -87,7 +87,7 @@ class FigureClientTest {
 
         figureClient.deleteFigure(id);
 
-        CustomClientException ex = Assertions.assertThrows(CustomClientException.class,
+        CustomException ex = Assertions.assertThrows(CustomException.class,
                 () -> figureClient.deleteFigure(id));
         Assertions.assertEquals(HttpStatus.BAD_REQUEST.value(), ex.getStatusCode().value());
         Assertions.assertEquals("Figure not found.", ex.getMessage());
@@ -95,7 +95,7 @@ class FigureClientTest {
 
     @Test
     void randomFigure() {
-        CustomClientException ex = Assertions.assertThrows(CustomClientException.class,
+        CustomException ex = Assertions.assertThrows(CustomException.class,
                 () -> figureClient.randomFigure());
         Assertions.assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getStatusCode().value());
         Assertions.assertEquals("Not implemented yet.", ex.getMessage());

@@ -2,7 +2,7 @@ package com.hcd.figureclient.service;
 
 import com.hcd.figureclient.service.dto.Figure;
 import com.hcd.figureclient.service.dto.FigureRequest;
-import com.hcd.figureclient.service.error.CustomClientException;
+import com.hcd.figureclient.service.error.CustomException;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -26,7 +26,7 @@ public class FigureRestClient implements FigureClient {
                 .body(Figure[].class);
 
         if (figures == null) {
-            throw new CustomClientException("Could not get the figures.");
+            throw new CustomException("Could not get the figures.");
         }
         return List.of(figures);
     }
@@ -50,7 +50,7 @@ public class FigureRestClient implements FigureClient {
                 .body(Figure.class);
 
         if (figure == null) {
-            throw new CustomClientException("Could not create figure.");
+            throw new CustomException("Could not create figure.");
         }
         return figure;
     }
@@ -65,7 +65,7 @@ public class FigureRestClient implements FigureClient {
                 .body(Figure.class);
 
         if (figure == null) {
-            throw new CustomClientException("Could not update figure.");
+            throw new CustomException("Could not update figure.");
         }
         return figure;
     }
@@ -86,7 +86,7 @@ public class FigureRestClient implements FigureClient {
                 .body(Figure.class);
 
         if (figure == null) {
-            throw new CustomClientException("Could not get a random figure.");
+            throw new CustomException("Could not get a random figure.");
         }
         return figure;
     }

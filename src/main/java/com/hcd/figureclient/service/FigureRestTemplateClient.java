@@ -2,7 +2,7 @@ package com.hcd.figureclient.service;
 
 import com.hcd.figureclient.service.dto.Figure;
 import com.hcd.figureclient.service.dto.FigureRequest;
-import com.hcd.figureclient.service.error.CustomClientException;
+import com.hcd.figureclient.service.error.CustomException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -32,7 +32,7 @@ public class FigureRestTemplateClient implements FigureClient {
 
         Figure[] figures = response.getBody();
         if (figures == null) {
-            throw new CustomClientException("Could not get the figures.");
+            throw new CustomException("Could not get the figures.");
         }
         return List.of(figures);
     }
@@ -57,7 +57,7 @@ public class FigureRestTemplateClient implements FigureClient {
 
         Figure figure = response.getBody();
         if (figure == null) {
-            throw new CustomClientException("Could not create figure.");
+            throw new CustomException("Could not create figure.");
         }
         return figure;
     }
@@ -70,7 +70,7 @@ public class FigureRestTemplateClient implements FigureClient {
 
         Figure figure = response.getBody();
         if (figure == null) {
-            throw new CustomClientException("Could not update figure.");
+            throw new CustomException("Could not update figure.");
         }
         return figure;
     }
@@ -88,7 +88,7 @@ public class FigureRestTemplateClient implements FigureClient {
 
         Figure figure = response.getBody();
         if (figure == null) {
-            throw new CustomClientException("Could not get a random figure.");
+            throw new CustomException("Could not get a random figure.");
         }
         return figure;
     }
